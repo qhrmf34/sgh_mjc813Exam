@@ -29,9 +29,15 @@ class Test0415{
     b(a);
     }
     exam3(){
-    let strInput=Number(prompt("행성 입력하세요."));
+    while(true){
+    try{
+    let strInput=prompt("행성 숫자를 입력하세요.");
+    let numInput = Number(strInput);
     let a="";
-    switch(strInput){
+    if(isNaN(numInput)){
+    throw "숫자를 입력하세요.";}
+
+    switch(numInput){
         case 1 : a="수성";
         break;
         case 2 : a="금성";
@@ -49,8 +55,13 @@ class Test0415{
         case 8 : a="해왕성";
         break;
     }
-    document.getElementById("result4").innerHTML=`답 : ${a}`;
-
+    document.getElementById("result4").innerHTML=`입력 : ${strInput}<br>출력 : ${a}`;
+    break;
+    }
+    catch(e){
+    alert(`오류: ${e}`);
+    }
+    }
     }
     exam4(){
     let strInput2=prompt("단어 입력하세요.");
