@@ -68,13 +68,29 @@ class Test0416{
         b = Number(b);
         document.getElementById("result19").innerHTML=`결과 : ${a**b}`;
     }
-
+    exam20(){
+           let a=document.getElementById("exam200").value;
+           let b=document.getElementById("exam201").value;
+           a = Number(a);
+           b = Number(b);
+           document.getElementById("result20").innerHTML=`입력 : ${a} ${b}<br> 출력 : ${a/b} ${a%b}`;
+       }
+    exam24(){
+             let a=document.getElementById("exam24").value;
+             document.getElementById("result24").innerHTML=`입력 : ${a} <br> 출력 : ${a.toUpperCase()} `;
+         }
 
 }
-
+//상속 테스트
+class Renewal extends Test0416{
+    show24(){
+        super.exam24();
+    }
+}
 
 function start() {
     let test0416 = new Test0416();
+    let renewal = new Renewal();
     test0416.exam9();
     test0416.exam11();
     test0416.exam14();
@@ -82,5 +98,7 @@ function start() {
     test0416.exam17();
     test0416.exam18();
     test0416.exam19();
+    test0416.exam20();
+    renewal.show24();
 
 }
