@@ -131,6 +131,8 @@ class Exam26{
              }
     }
 }
+
+
 function start() {
     let test0416 = new Test0416();
     let renewal = new Renewal();
@@ -143,6 +145,14 @@ function start() {
     Exam19.exam19();
     test0416.exam20();
     renewal.show24();
-    Exam25.exam25();
-    Exam26.exam26();
 }
+
+document.getElementById("button25").onclick = ()=>{
+    Exam25.exam25();
+};
+
+
+document.getElementById("button26").onclick = ()=>{
+    Exam26.exam26();
+};
+
