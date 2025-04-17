@@ -70,13 +70,19 @@ class Exam37{
         }
     }
     let h="";
+    let count=0;
     let g=Math.max(...this.maps.values());
         this.maps.forEach((value,key)=>{
             if(value==g){
                 h=key;
+                count++;
             }
         });
-        document.getElementById("result37").innerHTML=`${h}(이)가 총 ${g}표로 반장이 되었습니다.`;
+    if(count>=2){
+    alert("동점입니다 다시 투표해주세요.");
+    return;
+    }
+    document.getElementById("result37").innerHTML=`${h}(이)가 총 ${g}표로 반장이 되었습니다.`;
         //배열의 원소를 검색하여 같은 원소가 나오면 몇번인지 저장
         //map 에다가 원소이름 : 몇번으로 저장한다.
         //다음 원소로 검색할때 map의 키에 원소이름이 존재하는지 조건
@@ -84,8 +90,9 @@ class Exam37{
         //원소 이름이 이미 map에 있다면 다음 배열 원소로 건너뛴다.
         //가장 값이 큰 map 원소를 리턴
 
-    }
+        }
 }
+
 
 document.getElementById("button37").onclick = ()=>{
     let ex37=new Exam37(document.getElementById("exam37").value);
