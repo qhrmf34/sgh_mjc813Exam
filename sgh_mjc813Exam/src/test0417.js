@@ -141,6 +141,37 @@ document.getElementById("button39").onclick = ()=>{
     Exam39.exam39();
 };
 
+
+class Exam41{
+    exam41(){
+        let a=document.getElementById("exam41").value;
+        a=Number(a);
+        if(this.exam411(a)){
+                document.getElementById("result41").innerHTML=`YES`;
+        }
+        else{
+                document.getElementById("result41").innerHTML=`NO`;
+        }
+
+    }
+    exam411(a){
+        for(let i=2;i<a;i++){
+                if(a%i==0){
+                     return false;
+                }
+          }
+          return true;
+    }
+
+}
+
+document.getElementById("button41").onclick = ()=>{
+    let ex41=new Exam41();
+    ex41.exam41();
+};
+
+
+
 class Exam42{
 
     static exam42(){
