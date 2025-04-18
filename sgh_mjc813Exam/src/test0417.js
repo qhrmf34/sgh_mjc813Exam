@@ -206,6 +206,18 @@ document.getElementById("button42").onclick = ()=>{
     Exam42.exam42();
 };
 
+class Exam43{
+    static exam43(){
+        let a=document.getElementById("exam43").value;
+        a=Number(a);
+        document.getElementById("result43").innerHTML=`${a.toString(2)}`;
+    }
+}
+
+document.getElementById("button43").onclick = ()=>{
+    Exam43.exam43();
+};
+
 //class Test37 {
 //                arrItem = [];
 //
