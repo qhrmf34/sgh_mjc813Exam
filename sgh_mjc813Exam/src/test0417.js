@@ -210,13 +210,35 @@ class Exam43{
     static exam43(){
         let a=document.getElementById("exam43").value;
         a=Number(a);
-        document.getElementById("result43").innerHTML=`${a.toString(2)}`;
+        let b="";
+        if(a!=0){
+        while(a>0){
+            b=(a%2)+b;
+            a=Math.floor(a/2);
+            }
+        }
+        else{
+            b=0;
+        }
+        document.getElementById("result43").innerHTML=`${b}`;
     }
 }
 
 document.getElementById("button43").onclick = ()=>{
     Exam43.exam43();
 };
+
+//class Exam43{
+//    static exam43(){
+//        let a=document.getElementById("exam43").value;
+//        a=Number(a);
+//        document.getElementById("result43").innerHTML=`${a.toString(2)}`;
+//    }
+//}
+//
+//document.getElementById("button43").onclick = ()=>{
+//    Exam43.exam43();
+//};
 
 //class Test37 {
 //                arrItem = [];
