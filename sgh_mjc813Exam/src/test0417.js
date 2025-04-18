@@ -228,6 +228,41 @@ document.getElementById("button43").onclick = ()=>{
     Exam43.exam43();
 };
 
+class Exam44{
+    static exam44(){
+        let a=document.getElementById("exam44").value;
+        let b=0;
+        for(let i=0;i<a.length;i++){
+            b+=Number(a.charAt(i));
+        }
+
+        document.getElementById("result44").innerHTML=`${b}`;
+    }
+}
+
+document.getElementById("button44").onclick = ()=>{
+    Exam44.exam44();
+};
+
+class Exam46{
+    static exam46(){
+        let a=document.getElementById("exam46").value;
+        let b="";
+        for(let i=1;i<=Number(a);i++){
+            b+=i;
+        }
+        let c=0;
+        for(let i=0;i<b.length;i++){
+            c+=Number(b.charAt(i));
+        }
+        document.getElementById("result46").innerHTML=`${c}`;
+    }
+}
+
+document.getElementById("button46").onclick = ()=>{
+    Exam46.exam46();
+};
+
 //class Exam43{
 //    static exam43(){
 //        let a=document.getElementById("exam43").value;
