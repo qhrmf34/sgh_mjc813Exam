@@ -131,6 +131,49 @@ document.getElementById("button38").onclick = ()=>{
     Exam38.exam38();
 };
 
+class Exam39{
+    static exam39(){
+    document.getElementById("result39").innerHTML=`${document.getElementById("exam39").value.replaceAll("q","e")}`;
+    }
+}
+
+document.getElementById("button39").onclick = ()=>{
+    Exam39.exam39();
+};
+
+class Exam42{
+
+    static exam42(){
+        let a=document.getElementById("exam420").value;
+        let b=document.getElementById("exam421").value;
+        let c=document.getElementById("exam422").value;
+        a = Number(a);
+        b = Number(b);
+        c = Number(c);
+        const d = new Date(`${a},${b},${c}`);
+        switch(d.getDay()){
+            case 0 : document.getElementById("result42").innerHTML=`일요일`;
+            break;
+            case 1 : document.getElementById("result42").innerHTML=`월요일`;
+            break;
+            case 2 : document.getElementById("result42").innerHTML=`화요일`;
+            break;
+            case 3 : document.getElementById("result42").innerHTML=`수요일`;
+            break;
+            case 4 : document.getElementById("result42").innerHTML=`목요일`;
+            break;
+            case 5 : document.getElementById("result42").innerHTML=`금요일`;
+            break;
+            case 6 : document.getElementById("result42").innerHTML=`토요일`;
+            break;
+
+        }
+    }
+
+}
+document.getElementById("button42").onclick = ()=>{
+    Exam42.exam42();
+};
 
 //class Test37 {
 //                arrItem = [];
