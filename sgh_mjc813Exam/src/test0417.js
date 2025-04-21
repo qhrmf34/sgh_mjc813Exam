@@ -263,6 +263,27 @@ document.getElementById("button46").onclick = ()=>{
     Exam46.exam46();
 };
 
+class Exam58{
+    static exam58(){
+        let a=document.getElementById("exam58").value;
+        let count=0;
+        let comma="";
+        for(let i=a.length-1;i>=0;i--){
+            comma=a.charAt(i)+comma;
+            count++;
+            if(count%3==0&&i!==0){
+                comma=","+comma;
+            }
+        }
+      document.getElementById("result58").innerHTML=`${comma}`;
+    }
+}
+
+document.getElementById("button58").onclick = ()=>{
+    Exam58.exam58();
+};
+
+
 //class Exam43{
 //    static exam43(){
 //        let a=document.getElementById("exam43").value;
