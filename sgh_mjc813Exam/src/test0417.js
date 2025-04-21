@@ -283,7 +283,16 @@ document.getElementById("button58").onclick = ()=>{
     Exam58.exam58();
 };
 
+class Exam59{
+    static exam59(){
+        let a=document.getElementById("exam59").value;
+      document.getElementById("result59").innerHTML=`${"=".repeat(Math.ceil((50-a.length)/2))}${a}${"=".repeat(Math.floor((50-a.length)/2))}`;
+    }
+}
 
+document.getElementById("button59").onclick = ()=>{
+    Exam59.exam59();
+};
 //class Exam43{
 //    static exam43(){
 //        let a=document.getElementById("exam43").value;
