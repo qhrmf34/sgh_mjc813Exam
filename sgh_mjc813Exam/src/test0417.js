@@ -293,6 +293,31 @@ class Exam59{
 document.getElementById("button59").onclick = ()=>{
     Exam59.exam59();
 };
+
+class Exam61{
+    static exam61(){
+        let a=document.getElementById("exam61").value;
+        let b="";
+        let count=1;
+        for(let i=1;i<a.length;i++){
+            if(a.charAt(i)==a.charAt(i-1)){
+                count++;
+            }
+            else{
+                b+=a.charAt(i-1)+count;
+                count=1;
+            }
+        }
+      b+=a.charAt(a.length-1)+count;
+      document.getElementById("result61").innerHTML=`${b}`;
+    }
+}
+
+document.getElementById("button61").onclick = ()=>{
+    Exam61.exam61();
+};
+
+
 //class Exam43{
 //    static exam43(){
 //        let a=document.getElementById("exam43").value;
