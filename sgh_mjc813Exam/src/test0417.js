@@ -317,6 +317,35 @@ document.getElementById("button61").onclick = ()=>{
     Exam61.exam61();
 };
 
+class Exam68{
+    static exam68(){
+        let a=document.getElementById("exam680").value;
+        let b=document.getElementById("exam681").value;
+        let bus=a.split(" ");
+        let res=[];
+        let aa=bus.map(item => {
+            return item.split(":").map(Number);
+        });
+
+        b = b.split(":").map(Number);
+        for(let i=0;i<aa.length;i++){
+            if(Number(aa[i][0])-b[0]<0||(aa[i][0]-b[0]==0&&aa[i][1]-b[1]<0)){
+                res.push("지나갔습니다.");
+            }
+            else{
+                res.push(`${aa[i][0]-b[0]}시간 ${aa[i][1]-b[1]}분`);
+            }
+        }
+
+        document.getElementById("result68").innerHTML = res;
+    }
+}
+
+document.getElementById("button68").onclick = ()=>{
+    Exam68.exam68();
+};
+
+
 
 //class Exam43{
 //    static exam43(){
