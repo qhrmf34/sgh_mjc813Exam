@@ -366,7 +366,47 @@ document.getElementById("button87").onclick = ()=>{
     Exam87.exam87();
 };
 
+class Exam91{
 
+    total_91(){
+        let total_sum=[];
+        let total_score=[];
+        let tos="";
+        for(let i=0;i<7;i++){
+            let class_sum=0;
+            let class_score=[];
+            tos+=`${i+1}반<br>`;
+            for(let j=0;j<30;j++){
+                  let sum=0;
+                  let student_score=[];
+                  for(let k=0;k<5;k++){
+                       student_score.push(Math.floor(Math.random()*100)+1);
+                       sum+=student_score[k];
+                  }
+                  class_score.push(student_score);
+                  tos+=`[국어 : ${student_score[0]}, 영어 : ${student_score[1]}, 수학 : ${student_score[2]}, 사회 : ${student_score[3]}, 과학 : ${student_score[4]}]<br>`;
+                  class_sum+=sum;
+                  sum=0;
+                  student_score=[];
+            }
+            total_sum.push(class_sum);
+            total_score.push(class_score);
+        }
+        let avg=total_sum.map((item,index)=>[(item/150).toFixed(2),index+1]);
+        let cav="";
+        avg.forEach((item)=>cav+=`${item[1]}반 평균 점수는 ${item[0]} 점<br>`);
+        document.getElementById("result910").innerHTML = cav;
+        avg=avg.sort((a,b)=>Number(b[0])-Number(a[0]));
+
+    }
+
+
+
+}
+document.getElementById("button91").onclick = ()=>{
+    let ex91=new Exam91();
+    ex91.total_91();
+};
 //class Exam43{
 //    static exam43(){
 //        let a=document.getElementById("exam43").value;
