@@ -357,7 +357,7 @@ class Exam87{
             pd.set(people[i],dish[i]);
           }
           let res=[...pd].sort((a,b)=>Number(b[1])-Number(a[1]));
-          let resul=res.map((item)=>`'${item[0]}' : ${item[1]}`);
+          let resul=res.map((item,index)=>`'${item[0]}' : ${index+1}`);
           document.getElementById("result87").innerHTML = `{${resul}}`;
     }
 }
