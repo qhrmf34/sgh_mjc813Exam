@@ -346,6 +346,26 @@ document.getElementById("button68").onclick = ()=>{
 };
 
 
+class Exam87{
+    static exam87(){
+          let a=document.getElementById("exam870").value;
+          let b=document.getElementById("exam871").value;
+          let people=a.split(" ");
+          let dish=b.split(" ");
+          let pd=new Map();
+          for(let i=0;i<people.length;i++){
+            pd.set(people[i],dish[i]);
+          }
+          let res=[...pd].sort((a,b)=>Number(b[1])-Number(a[1]));
+          let resul=res.map((item)=>`'${item[0]}' : ${item[1]}`);
+          document.getElementById("result87").innerHTML = `{${resul}}`;
+    }
+}
+
+document.getElementById("button87").onclick = ()=>{
+    Exam87.exam87();
+};
+
 
 //class Exam43{
 //    static exam43(){
