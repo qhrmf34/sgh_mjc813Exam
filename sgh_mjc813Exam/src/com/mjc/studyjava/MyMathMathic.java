@@ -2,6 +2,13 @@ package com.mjc.studyjava;
 
 public class MyMathMathic {
 
+    public long square(int a, byte b){
+        long answer=1;
+        for(int i=0; i<b; i++){
+            answer *= (long)a;
+        }
+        return answer;
+    }
     public int add(int a, int b){
         return a+b;
     }
@@ -41,13 +48,7 @@ public class MyMathMathic {
     public int shiftRight0(int a, byte b){
         return a>>>b;
     }
-    public long square(int a, byte b){
-        int answer=1;
-        for(int i=0; i<b; i++){
-            answer*=a;
-        }
-        return answer;
-    }
+
     public int absolute(int a){
         return Math.abs(a);
     }
