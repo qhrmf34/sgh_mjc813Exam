@@ -1,7 +1,52 @@
 package com.mjc.studyjava;
 
 public class MyMathMathic {
+    
 
+    public int avg(int [] array){
+        MyMathMathic m=new MyMathMathic();
+        int result=0;
+        result = m.sum(array)/array.length;
+        return result;
+    }
+    public int sum(int [] array){
+        int result=0;
+        for(int i=0;i<array.length;i++){
+            result+=array[i];
+        }
+        return result;
+    }
+    public int sumOfNumber(int[] array, int number){
+        int result=0;
+        for(int i=0;i<array.length;i++){
+            if(array[i]%number==0) {
+                result += array[i];
+            }
+        }
+        return result;
+    }
+    public int sumOfLoop(int a, int b){
+        int result=0;
+        for(int i=a;i<=b;i++){
+            if(i%2==0){
+                continue;
+            }
+            result+=i;
+        }
+        for(int i=a;i<=b;i++){
+            if(i%2==1){
+                continue;
+            }
+            result+=i;
+        }
+        return result;
+    }
+    public int sumOfFav(int a, int b){
+        if(a<b){
+            a+=sumOfFav(a+1,b);
+        }
+        return a;
+    }
     public long square(int a, byte b){
         long answer=1;
         for(int i=0; i<b; i++){
