@@ -5,8 +5,8 @@ import java.util.List;
 public class question3 {
     public static void main(String[] args) {
         List<int[]> sol = new ArrayList<>();
-        for (int i = 0; i < 30; i++) {
-            for (int j = 0; j < 30; j++) {
+        for (int i = 1; i <=10; i++) {
+            for (int j = 1; j <=10; j++) {
                 if (4 * i + 5 * j == 60) {
                     sol.add(new int[]{i, j});
                 }
