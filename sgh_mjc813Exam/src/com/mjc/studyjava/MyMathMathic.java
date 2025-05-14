@@ -9,11 +9,11 @@ import java.util.Random;
 public class MyMathMathic {
     public static void main(String[] args) {
         MyMathMathic math = new MyMathMathic();
-        System.out.println(math.getBigDecimal(3123, 2353));
+        System.out.println(math.getBigDecimal(-741874895, 1004780065));
         System.out.println(((Object) math.getIntegerArray(new int[]{1, 2, 44, 534, 6, 7})).getClass().getSimpleName());
         System.out.println(Arrays.toString(math.makeRandomIntArray(7)));
         System.out.println(math.makeEncryptString("mjc813", 5));
-        System.out.println(math.makeDecryptString(null, 5));
+        System.out.println(math.makeDecryptString("ajjbqmcajrjzcgdchfbs8nrfw1ofwq3", 5));
     }
 
     public int avg(int[] array) {
@@ -161,12 +161,9 @@ public class MyMathMathic {
     }
 
     BigDecimal getBigDecimal(int n, int s) {
-        String str = Integer.toString(s);
-        BigDecimal result = new BigDecimal(n);
-        BigDecimal result2 = new BigDecimal(s);
-        result2 = result2.divide(BigDecimal.valueOf(Math.pow(10, str.length())));
-        BigDecimal result3 = result.add(result2);
-        return result3;
+        String a=n+"."+s;
+        BigDecimal result = new BigDecimal(a);
+        return  result;
     }
 
     Integer[] getIntegerArray(int[] array) {
