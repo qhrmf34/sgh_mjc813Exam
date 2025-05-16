@@ -1,7 +1,7 @@
 package com.mjc.studyjava;
 
 public class Computer {
-    Component[] computer=new Component[5];
+    private Component[] computer=new Component[5];
 
     public static void main(String[] args) {
         Computer m=new Computer();
