@@ -38,7 +38,7 @@ public class Driver {
 
         }
     }
-    public void brake(){
+    public void breakk(){
         if(vehicle instanceof Truck) {
             Truck truck = (Truck) vehicle;
             System.out.println("운전수 "+getName()+ "은 "+ truck.getName()+"을 정지한다.");
@@ -47,5 +47,6 @@ public class Driver {
             Bicycle bicycle = (Bicycle) vehicle;
             System.out.println("운전수 "+getName()+ "은 "+bicycle.getName()+"을 정지한다.");
 
-        }    }
+        }
+    }
 }
