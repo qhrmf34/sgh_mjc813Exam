@@ -1,5 +1,7 @@
 package com.mjc.studyjava;
 
+import com.mjc813.mjc_library.MjcPoint;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -7,7 +9,14 @@ import java.util.List;
 import java.util.Random;
 
 public class MyMathMathic {
+    public static void main(String[] args) {
+        MjcPoint mp = new MjcPoint();
+        mp.addPoint(null,3);
+        mp.addPoint(new IMarketTest(),5);
+        mp.subPoint(null,3);
+        mp.subPoint(new IMarketTest(),10);
 
+    }
 
     public int avg(int[] array) {
         MyMathMathic m = new MyMathMathic();
