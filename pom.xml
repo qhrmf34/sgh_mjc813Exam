@@ -4,12 +4,12 @@
 
   <groupId>com.mjc.studyjava</groupId>
   <!--  본인프로젝트의 소스 패키지-->
-  <artifactId>mavenJUnit</artifactId>
+  <artifactId>sgh_mjc813Exam</artifactId>
   <!--  본인프로젝트의 프로젝트이름-->
   <version>1.0-SNAPSHOT</version>
   <!--  본인프로젝트의 버전-->
 
-  <name>mavenJUnit</name>
+  <name>sgh_mjc813Exam</name>
   <!--  본인프로젝트 이름-->
 
   <properties>
@@ -24,8 +24,6 @@
       <artifactId>mjc_library</artifactId>
       <version>1.0-SNAPSHOT</version>
     </dependency>
-
-
     <dependency>
       <groupId>org.apache.maven</groupId>
       <artifactId>maven-plugin-api</artifactId>
@@ -42,13 +40,6 @@
       <artifactId>plexus-utils</artifactId>
       <version>3.0.8</version>
     </dependency>
-
-    <dependency>
-      <groupId>com.sghcalculator.lib</groupId>
-      <artifactId>sghcal</artifactId>
-      <version>1.0-SNAPSHOT</version>
-    </dependency>
-
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-api</artifactId>
