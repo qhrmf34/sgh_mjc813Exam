@@ -17,7 +17,7 @@ public class Main {
     }
     public static void generateAndSendEmail() throws Exception{
         final String user="qhrmf34@naver.com";
-        final String password="2LXJC7VL58MB";
+        final String password="";
         prop = new Properties();
         prop.put("mail.smtp.host", "smtp.naver.com");
         prop.put("mail.smtp.auth", "true");
@@ -31,7 +31,7 @@ public class Main {
         try {
             message = new MimeMessage(session);
             message.setFrom(new InternetAddress(user));
-            message.addRecipient(Message.RecipientType.TO, new InternetAddress("qhrmfqhrmf34@gmail.com"));
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress("lsungbok102@naver.com"));
             message.setSubject("Test");
             message.setText("This is a test message");
             Transport.send(message);

@@ -16,7 +16,7 @@ public class Main {
     }
     public static void generateAndSendEmail() throws Exception{
         final String user="qhrmf34@naver.com";
-        final String password="2LXJC7VL58MB";
+        final String password="";
         prop = new Properties();
         prop.put("mail.smtp.host", "smtp.naver.com");
         prop.put("mail.smtp.auth", "true");
