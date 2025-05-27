@@ -18,6 +18,9 @@
 *.zip
 *.tar.gz
 *.rar
+.jar
+.bat
+*.bat
 output/
 bin/
 classes/
