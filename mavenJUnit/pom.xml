@@ -18,12 +18,16 @@
     <maven.compiler.target>21</maven.compiler.target>
   </properties>
 
+
+
   <dependencies>
     <dependency>
       <groupId>com.mjc813</groupId>
       <artifactId>mjc_library</artifactId>
       <version>1.0-SNAPSHOT</version>
     </dependency>
+
+
 
 
     <dependency>
