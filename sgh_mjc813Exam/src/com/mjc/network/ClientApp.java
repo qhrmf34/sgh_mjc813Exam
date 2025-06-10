@@ -1,9 +1,6 @@
 package com.mjc.network;
 
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
+import java.io.*;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
@@ -11,6 +8,7 @@ import java.util.Scanner;
 
 public class ClientApp {
     private Socket sck = null;
+    private BufferedWriter bw = null;
 
     public ClientApp() {
         this.sck = new Socket();    // 클라이언트소켓 생성
@@ -18,6 +16,15 @@ public class ClientApp {
     public void init(String ipAddr, int port) throws IOException {
         SocketAddress sa = new InetSocketAddress(ipAddr, port);
         this.sck.connect(sa);
+        this.bw = new BufferedWriter(
+                new OutputStreamWriter(this.sck.getOutputStream())
+        );
+        BufferedReader br = new BufferedReader(
+                new InputStreamReader(this.sck.getInputStream())
+        );
+        Thread readSocketThread = new Thread(new ClientReadSocketThread(br));
+        readSocketThread.start();
+        // Ip 주소와 포트로 접속한다.
         // Ip 주소와 포트로 접속한다.
     }
     public void send(String str) throws IOException {
@@ -25,16 +32,18 @@ public class ClientApp {
         BufferedWriter writer = new BufferedWriter(
                 new OutputStreamWriter(this.sck.getOutputStream())
         );
+        System.out.println("이름을 정하시오.");
+        String name = sc.nextLine();
         while(true) {
+
             String line = sc.nextLine();
-
-            writer.write(line+"\n");   // 통신소켓에 데이터를 전송한다.
-            writer.flush();
-            if(line.equals("quit")){
-                line="exit!@#$app";
+            if(line.equals("quit")||line.equals("exit!@#$app")){
+                writer.write(name+": exit!@#$app\n");
+                writer.flush();
+                break;
             }
-            if(line.equals("exit!@#$app")) break;
-
+            writer.write(name+": "+line+"\n");   // 통신소켓에 데이터를 전송한다.
+            writer.flush();
 
         }
         writer.close();
