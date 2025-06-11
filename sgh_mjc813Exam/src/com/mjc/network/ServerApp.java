@@ -9,66 +9,78 @@ import java.util.Scanner;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class ServerApp {
+public class ServerApp implements Broadcast{
     private ServerSocket ss = null;
-    private Scanner sc = null;
-    private ServerScannerThread sst = null;
+    private Scanner sc = new Scanner(System.in);
     private LinkedList<Socket> sockets = new LinkedList<>();
 
-    private ExecutorService es = Executors.newFixedThreadPool(10);
     public ServerApp(int port) throws IOException {
-        // this.ss = new ServerSocket(port);   // 포트번호로 서버소켓 생성
         this.ss = new ServerSocket(port);
-        //this.ss.bind(new InetSocketAddress(44567)); // 바인드 명령으로 접속받아들일 IP주소대역과 포트번호로 클라이언트 접속을 대기할 수 있다.
     }
-    public void startThread(Socket sck) {
 
-        es.execute(()->{
-            try {
-                BufferedReader reader = new BufferedReader(
-                        new InputStreamReader(sck.getInputStream())
-                );
 
-                String str;
-                while((str = reader.readLine()) != null) {
-                    System.out.println(str);
-                    if (str.equals("exit!@#$app")) {
-                        reader.close();
-                        sockets.remove(sck);
-                    }
+    public void broadcastMessage(String message) {
+        for (Socket sck : sockets) {
+            if (!sck.isClosed() && sck.isConnected()) {
+                try {
+                    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(sck.getOutputStream()));
+                    writer.write(message);
+                    writer.newLine();
+                    writer.flush();
+                } catch (IOException e) {
+                    System.err.printf("에러 : [%s] : [%s] : [%s] \n",sck.getInetAddress().toString(),sck.getPort() ,e.getMessage());
+
                 }
-                reader.close(); // 읽기버퍼닫기
-
-
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+            } else {
+                sockets.remove(sck);
+                System.out.printf("[%s] : [%s] 소켓이 리스트에서 지워짐",sck.getInetAddress(),sck.getPort());
             }
-        });
+        }
     }
-
 
 
     public void init() throws IOException {
-        while(true){
-            try {
-                Socket sck = this.ss.accept();  // 클라이언트접속 기다림, 블로킹상태
-                System.out.println(sck.toString()); // 접속되면 이 문장 실행
-                sockets.add(sck);
-                startThread(sck);
-                Scanner scanner = new Scanner(System.in);
-                BufferedWriter bw = new BufferedWriter(
-                        new OutputStreamWriter(sck.getOutputStream())
-                );
-                this.sst = new ServerScannerThread(scanner, bw);
-                this.sst.start();
-            }
-            catch (IOException e) {
-                System.err.println(e.getMessage());
-                throw e;
-            }
 
+
+        Thread servermessage=new ServerMessageThread(this,ss);
+        servermessage.start();
+
+        Thread acpt = new Thread(()->{
+            while (true) {
+            try {
+                Socket sck = this.ss.accept();
+                sockets.add(sck);
+                Thread clinehandler=new ClientHandlerThread(sck,sockets,this);
+                clinehandler.start();
+            } catch (IOException e) {
+                if (this.ss.isClosed()) {
+                    break;
+                }
+                System.err.println("클라이언트 연결 에러 : " + e.getMessage());
+            }
+        }});
+        acpt.start();
+    }
+
+    public void closeAllConnections() {
+        for (Socket sck : sockets) {
+            try {
+                if (!sck.isClosed()) {
+                    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(sck.getOutputStream()));
+                    writer.write("exit!@#$app");
+                    writer.newLine();
+                    writer.flush();
+                    sck.close();
+                }
+            } catch (IOException e) {
+                System.err.println("서버 종료 " + e.getMessage());
+            }
+            finally {
+                sockets.clear();
+            }
         }
     }
+
 
     public static void main(String[] args) throws IOException {
         System.out.println("Server start");

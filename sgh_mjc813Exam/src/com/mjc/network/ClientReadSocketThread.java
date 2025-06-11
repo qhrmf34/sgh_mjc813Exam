@@ -17,7 +17,7 @@ public class ClientReadSocketThread implements Runnable {
                     this.br.close();
                     break;
                 }
-                System.out.printf(str);
+                System.out.printf(str+"\n");
             }
         } catch (IOException e) {
             System.out.println("server disconnected");
