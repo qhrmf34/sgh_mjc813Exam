@@ -75,10 +75,8 @@ public class ServerApp implements Broadcast{
             } catch (IOException e) {
                 System.err.println("서버 종료 " + e.getMessage());
             }
-            finally {
-                sockets.clear();
-            }
         }
+        sockets.clear();
     }
 
 
