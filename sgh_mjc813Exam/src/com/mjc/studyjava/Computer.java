@@ -52,7 +52,7 @@ public class Computer {
         computer[0]=new Component(Component.Name.mjc814, Component.CpuType.Gen9_i5, Component.RamType._8GB, Component.StorageType._500GB, Component.GpuType.GTX_1660,1000000,7);
         computer[1]=new Component(Component.Name.mjc813, Component.CpuType.Gen9_i7, Component.RamType._4GB, Component.StorageType._2000GB, Component.GpuType.Intel_A770,1600000,3);
         computer[2]=new Component(Component.Name.mjc815, Component.CpuType.Gen9_i9, Component.RamType._16GB, Component.StorageType._1000GB, Component.GpuType.RTX_4080,1450000,5);
-        computer[3]=new Component(Component.Name.mjc815, Component.CpuType.Gen9_i13, Component.RamType._32GB, Component.StorageType._4000GB, Component.GpuType.RTX_4080,800000,17);
+        computer[3]=new Component(Component.Name.mjc814, Component.CpuType.Gen9_i11, Component.RamType._2GB, Component.StorageType._8000GB, Component.GpuType.GTX_1660,700000,25);
         computer[4]=new Component(Component.Name.mjc814, Component.CpuType.Gen9_i11, Component.RamType._2GB, Component.StorageType._8000GB, Component.GpuType.GTX_1660,700000,25);
     }
 
