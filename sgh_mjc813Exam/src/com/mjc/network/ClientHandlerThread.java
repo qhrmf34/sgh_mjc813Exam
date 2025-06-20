@@ -34,7 +34,9 @@ public class ClientHandlerThread extends Thread {
                 System.err.printf("Client : [%s] : %s\n",clientAddress,e.getMessage());
             } finally {
                 try {
-                    sockets.remove(clientSocket);
+                    synchronized (sockets) {
+                        sockets.remove(clientSocket);
+                    }
                     clientSocket.close();
                     System.out.println("Client " + clientAddress + " removed. " + sockets.size());
                     broadcast.broadcastMessage("Server: Client " + clientAddress);

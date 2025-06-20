@@ -32,7 +32,9 @@ public class ServerApp implements Broadcast{
 
                 }
             } else {
-                sockets.remove(sck);
+                synchronized(sockets){
+                    sockets.remove(sck);
+                }
                 System.out.printf("[%s] : [%s] 소켓이 리스트에서 지워짐",sck.getInetAddress(),sck.getPort());
             }
         }
@@ -49,7 +51,9 @@ public class ServerApp implements Broadcast{
             while (true) {
             try {
                 Socket sck = this.ss.accept();
-                sockets.add(sck);
+                synchronized(sockets) {
+                    sockets.add(sck);
+                }
                 Thread clinehandler=new ClientHandlerThread(sck,sockets,this);
                 clinehandler.start();
             } catch (IOException e) {
