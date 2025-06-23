@@ -11,6 +11,7 @@ public class ServerApp implements Broadcast{
     private ServerSocket ss = null;
     private Scanner sc = new Scanner(System.in);
     private LinkedList<Socket> sockets = new LinkedList<>();
+    private ServerAcceptThread acceptThread;
 
     public ServerApp(int port) throws IOException {
         this.ss = new ServerSocket(port);
@@ -45,26 +46,12 @@ public class ServerApp implements Broadcast{
     public void init() throws IOException {
 
 
+
+        acceptThread=new ServerAcceptThread(sockets,ss,this);
+        acceptThread.start();
+
         Thread servermessage=new ServerMessageThread(this,ss);
         servermessage.start();
-
-        Thread acpt = new Thread(()->{
-            while (true) {
-            try {
-                Socket sck = this.ss.accept();
-                synchronized(sockets) {
-                    sockets.add(sck);
-                }
-                Thread clinehandler=new ServerReadAndBroadcast(sck,sockets,this);
-                clinehandler.start();
-            } catch (IOException e) {
-                if (this.ss.isClosed()) {
-                    break;
-                }
-                System.err.println("클라이언트 연결 에러 : " + e.getMessage());
-            }
-        }});
-        acpt.start();
     }
 
     public void closeAllConnections() {
@@ -81,7 +68,12 @@ public class ServerApp implements Broadcast{
                 System.err.println("서버 종료 " + e.getMessage());
             }
         }
-        sockets.clear();
+        if(sockets!=null&&!sockets.isEmpty()) {
+            sockets.clear();
+        }
+        if(acceptThread!=null) {
+            acceptThread.shutdown();
+        }
     }
 
 
