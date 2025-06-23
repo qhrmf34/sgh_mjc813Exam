@@ -27,34 +27,16 @@ public class ClientApp {
         // Ip 주소와 포트로 접속한다.
         // Ip 주소와 포트로 접속한다.
     }
-    public void send(String str) throws IOException {
-        Scanner sc = new Scanner(System.in);
-        BufferedWriter writer = new BufferedWriter(
-                new OutputStreamWriter(this.sck.getOutputStream())
-        );
-        System.out.println("이름을 정하시오.");
-        String name = sc.nextLine();
-        while(true) {
-
-            String line = sc.nextLine();
-            if(line.equals("quit")||line.equals("exit!@#$app")){
-                writer.write(name+": exit!@#$app\n");
-                writer.flush();
-                break;
-            }
-            writer.write(name+": "+line+"\n");   // 통신소켓에 데이터를 전송한다.
-            writer.flush();
-
-        }
-        writer.close();
-
+    public void send() throws IOException {
+        Thread send=new ClientWriteThread(this.sck,this.bw);
+        send.start();
     }
     public static void main(String[] args) {
         System.out.println("Client start");
         try {
             ClientApp ca = new ClientApp();
             ca.init("127.0.0.1", 44567);
-            ca.send("Aa");
+            ca.send();
 
         } catch (IOException e) {
             System.err.println(e.toString());

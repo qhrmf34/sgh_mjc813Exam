@@ -4,13 +4,12 @@ import java.io.*;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
-import java.util.LinkedList;
 import java.util.Scanner;
 
 public class ClientApp2 {
     private Socket sck = null;
     private BufferedWriter bw = null;
-    private LinkedList<Socket> socketlist = new LinkedList<>();
+
     public ClientApp2() {
         this.sck = new Socket();    // 클라이언트소켓 생성
     }
@@ -28,37 +27,16 @@ public class ClientApp2 {
         // Ip 주소와 포트로 접속한다.
         // Ip 주소와 포트로 접속한다.
     }
-    public void send(String str) throws IOException {
-        Scanner sc = new Scanner(System.in);
-        BufferedWriter writer = new BufferedWriter(
-                new OutputStreamWriter(this.sck.getOutputStream())
-        );
-        System.out.println("이름을 정하시오.");
-        String name = sc.nextLine();
-        while(true) {
-
-            String line = sc.nextLine();
-            if(line.equals("quit")||line.equals("exit!@#$app")){
-                writer.write(name+": exit!@#$app\n");
-                writer.flush();
-                break;
-            }
-            writer.write(name+": "+line+"\n");   // 통신소켓에 데이터를 전송한다.
-            writer.flush();
-
-        }
-        writer.close();
-
-    }
-    public void broadcast(String str) throws IOException {
-
+    public void send() throws IOException {
+        Thread send=new ClientWriteThread(this.sck,this.bw);
+        send.start();
     }
     public static void main(String[] args) {
         System.out.println("Client start");
         try {
-            ClientApp ca = new ClientApp();
+            ClientApp2 ca = new ClientApp2();
             ca.init("127.0.0.1", 44567);
-            ca.send("Aa");
+            ca.send();
 
         } catch (IOException e) {
             System.err.println(e.toString());
