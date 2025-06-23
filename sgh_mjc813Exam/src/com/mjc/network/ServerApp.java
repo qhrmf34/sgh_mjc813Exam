@@ -45,8 +45,6 @@ public class ServerApp implements Broadcast{
 
     public void init() throws IOException {
 
-
-
         acceptThread=new ServerAcceptThread(sockets,ss,this);
         acceptThread.start();
 

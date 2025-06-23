@@ -6,11 +6,11 @@ import java.io.InputStreamReader;
 import java.net.Socket;
 import java.util.LinkedList;
 
-public class ServerReadAndBroadcast extends Thread {
+public class ServerReadAndBroadcastThread extends Thread {
     private Socket clientSocket=null;
     private LinkedList<Socket> sockets=null;
     private Broadcast broadcast=null;
-    public ServerReadAndBroadcast(Socket clientSocket, LinkedList<Socket> sockets, Broadcast broadcast) {
+    public ServerReadAndBroadcastThread(Socket clientSocket, LinkedList<Socket> sockets, Broadcast broadcast) {
         this.clientSocket = clientSocket;
         this.sockets = sockets;
         this.broadcast = broadcast;
