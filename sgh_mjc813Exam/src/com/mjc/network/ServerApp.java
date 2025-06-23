@@ -55,7 +55,7 @@ public class ServerApp implements Broadcast{
                 synchronized(sockets) {
                     sockets.add(sck);
                 }
-                Thread clinehandler=new ServerAndBroadCastMessageRead(sck,sockets,this);
+                Thread clinehandler=new ServerReadAndBroadcast(sck,sockets,this);
                 clinehandler.start();
             } catch (IOException e) {
                 if (this.ss.isClosed()) {
