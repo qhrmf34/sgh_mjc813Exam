@@ -1,13 +1,11 @@
 package com.mjc.network;
 
 import java.io.*;
-import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Scanner;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 public class ServerApp implements Broadcast{
     private ServerSocket ss = null;
@@ -33,7 +31,10 @@ public class ServerApp implements Broadcast{
                 }
             } else {
                 synchronized(sockets){
-                    sockets.remove(sck);
+                    Iterator<Socket> iterator=sockets.iterator();
+                    sck=iterator.next();
+                    iterator.remove();
+
                 }
                 System.out.printf("[%s] : [%s] 소켓이 리스트에서 지워짐",sck.getInetAddress(),sck.getPort());
             }
@@ -54,7 +55,7 @@ public class ServerApp implements Broadcast{
                 synchronized(sockets) {
                     sockets.add(sck);
                 }
-                Thread clinehandler=new ClientHandlerThread(sck,sockets,this);
+                Thread clinehandler=new ServerAndBroadCastMessageRead(sck,sockets,this);
                 clinehandler.start();
             } catch (IOException e) {
                 if (this.ss.isClosed()) {
