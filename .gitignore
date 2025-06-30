@@ -21,6 +21,7 @@
 .jar
 .bat
 *.bat
+*.xml
 output/
 bin/
 classes/
