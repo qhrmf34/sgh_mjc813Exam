@@ -78,7 +78,8 @@ public class Controller extends HttpServlet {
 			PrintWriter out = response.getWriter();
 			if(result1 == 1) {
 				out.println("<script>");
-				out.println(" alert('연락처수정이 완료 되었습니다!'); location.href='/list';");
+				out.println(" alert('연락처수정이 완료 되었습니다!'); location.href='" + request.getContextPath() + "/list';");
+
 				out.println("</script>");
 				out.flush();
 				/// 수정 인 경우에는 /list 주소로 이동 시켰다.
@@ -99,7 +100,7 @@ public class Controller extends HttpServlet {
 			out = response.getWriter();
 			if(result2 == 1) {
 				out.println("<script>");
-				out.println(" alert('연락처삭제가 완료 되었습니다!'); location.href='/list';");
+				out.println(" alert('연락처삭제가 완료 되었습니다!'); location.href='" + request.getContextPath() + "/list';");
 				out.println("</script>");
 				out.flush();
 				/// 삭제 인 경우에는 /list 주소로 이동 시켰다.
