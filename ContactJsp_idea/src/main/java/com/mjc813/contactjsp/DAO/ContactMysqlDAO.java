@@ -11,6 +11,7 @@ import com.mjc813.contactjsp.DTO.ContactDto;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.json.JSONObject;
 
 public class ContactMysqlDAO {
 	
@@ -107,7 +108,9 @@ public class ContactMysqlDAO {
 		return "list.jsp";
 	}
 	public String modify(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<ContactDto> list = new ArrayList<>();
+		//ArrayList<ContactDto> list = new ArrayList<>();
+		JSONObject list=new JSONObject();
+
 		try {
 			conn = getConnection();
 			int id = Integer.parseInt(request.getParameter("id"));
@@ -123,15 +126,11 @@ public class ContactMysqlDAO {
 			rs = ps.executeQuery();
 			if(rs.next()) {
 				/// sql 쿼리가 리턴하는 행 이 있다면 값을 설정한다.
-				ContactDto contactDto = new ContactDto();
-				contactDto.setId(id);
-				contactDto.setName(rs.getString(1));
-				contactDto.setPhoneNumber(rs.getString(2));
-				contactDto.setZipNumber(rs.getString(3));
-				contactDto.setEmail(rs.getString(4));
-				/// 컬럼의 값을 가져온다. 이것은 배열이 아니므로 1 부터 6개 컬럼의 값을 MemberDto 객체에 가져온다.
-				list.add(contactDto);
-				/// MemberDto 객체 한 개만 list 배열에 추가한다.
+				list.put("id", id);
+				list.put("name", rs.getString(1));
+				list.put("phoneNumber", rs.getString(2));
+				list.put("zipNumber", rs.getString(3));
+				list.put("email", rs.getString(4));
 			}
 
 			request.setAttribute("list",list);

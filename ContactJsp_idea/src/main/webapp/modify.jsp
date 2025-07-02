@@ -2,16 +2,16 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %>
 <%@ page import="com.mjc813.contactjsp.DTO.ContactDto" %>
+<%@ page import="org.json.JSONObject" %>
 <%
 request.setCharacterEncoding("UTF-8");
-ArrayList<ContactDto> list = new ArrayList<ContactDto>();
-list = (ArrayList<ContactDto>)request.getAttribute("list");
-		
-int id = list.get(0).getId();
-String name = list.get(0).getName();
-String phoneNumber = list.get(0).getPhoneNumber();
-String zipNumber = list.get(0).getZipNumber();
-String email = list.get(0).getEmail();
+	JSONObject list = (JSONObject)request.getAttribute("list");
+
+	int id = list.getInt("id");
+	String name = list.getString("name");
+	String phoneNumber = list.getString("phoneNumber");
+	String zipNumber = list.getString("zipNumber");
+	String email = list.getString("email");
 %>
 <!DOCTYPE html>
 <html>
