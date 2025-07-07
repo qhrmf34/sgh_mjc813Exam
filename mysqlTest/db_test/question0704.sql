@@ -128,6 +128,7 @@ select * from smart_student;
 drop view smart_student;
 /*test 구문*/
 /*7월4일 과제*/
+/*전체 뷰*/
 CREATE VIEW saled_and_lecture AS
 SELECT
   a.name,
@@ -153,6 +154,41 @@ order by name asc;
 
 select * from saled_and_lecture;
 drop view saled_and_lecture;
+
+
+select * from lecture_tbl;
+
+/*강의정보 뷰*/
+create view learn_view as
+select a.name,b.score,b.subject,b.teacher
+from contact_tbl a
+inner join 
+(select a.contact_id,a.score,b.subject,b.teacher
+from
+learn_tbl a
+inner join 
+lecture_tbl b
+on a.lecture_id=b.id
+) b
+on a.id=b.contact_id
+
+select * from learn_view;
+
+/*판매정보 뷰*/
+create view saled_view as
+select a.name,b.sale_dt,b.price,b.qty,b.product,b.discount,b.location
+from contact_tbl a 
+inner join
+(select a.contact_id,a.sale_dt,a.price,a.qty,a.product,a.discount,b.location
+from saled_tbl a
+inner join location_tbl b
+on a.location_id=b.id
+) b
+on a.id=b.contact_id;
+
+select * from saled_view; 
+
+
 /*가장 빠른 시작일자*/
 select a.name,min(c.start_dt)
 from contact_tbl as a
