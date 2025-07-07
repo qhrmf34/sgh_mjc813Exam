@@ -190,7 +190,7 @@ select * from saled_view;
 
 
 /*가장 빠른 시작일자*/
-select a.name,min(c.start_dt)
+select a.name,min(c.start_dt) as 가장빠른시작일자
 from contact_tbl as a
 inner join learn_tbl as b
 on a.id=b.contact_id
@@ -202,12 +202,12 @@ on b.lecture_id=c.id
 group by a.name;
 
 /*가장 늦은 끝 일자 시간*/
-select a.name,max(c.start_dt)
+select a.name,max(c.end_dt) 가장늦은끝일자
 from contact_tbl as a
 inner join learn_tbl as b
 on a.id=b.contact_id
 inner join(
-	select start_dt, id 
+	select end_dt, id 
 	from lecture_tbl
 )as c 
 on b.lecture_id=c.id
@@ -287,4 +287,5 @@ select product,price*qty-discount as 판매총금액
 from saled_tbl
 order by 판매총금액 desc;
 
+select * from learn_tbl;
 
