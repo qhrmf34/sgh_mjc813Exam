@@ -146,7 +146,7 @@ INNER JOIN (
 ) AS b ON a.id = b.contact_id
 INNER JOIN location_tbl AS c ON b.location_id = c.id
 INNER JOIN (
-  SELECT contact_id, AVG(score) AS 점수평균, COUNT(DISTINCT lecture_id) AS 수강강의수
+  SELECT contact_id, AVG(score) AS 점수평균, COUNT(lecture_id) AS 수강강의수
   FROM learn_tbl
   GROUP BY contact_id
 ) AS d ON a.id = d.contact_id
@@ -213,6 +213,20 @@ inner join(
 on b.lecture_id=c.id
 group by a.name;
 
+/*빠른시작일자,늦은끝일자*/
+select a.name,min(c.start_dt) 가장빠른시작일자,max(c.end_dt) 가장늦은끝일자
+from contact_tbl as a
+inner join learn_tbl as b
+on a.id=b.contact_id
+inner join(
+	select start_dt,end_dt, id 
+	from lecture_tbl
+)as c 
+on b.lecture_id=c.id
+group by a.name;
+
+
+
 select max(a.score) as 최고점수,b.subject
 from learn_tbl as a
 inner join lecture_tbl as b
@@ -245,6 +259,18 @@ inner join
 lecture_tbl c
 on a.lecture_id=c.id;
 
+/*전체 데이터 최고점수 내림차순*/
+select a.name,b.subject,b.score
+from contact_tbl a
+inner join 
+(select b.contact_id,a.subject,b.score
+from lecture_tbl a 
+inner join 
+learn_tbl b
+on a.id=b.lecture_id) b
+on a.id=b.contact_id
+order by subject, score desc;
+
 
 /*최하위점수*/
 create view min_score as
@@ -269,6 +295,21 @@ on a.contact_id=b.id
 inner join 
 lecture_tbl c
 on a.lecture_id=c.id;
+
+
+/*전체 데이터 최하위점수 오름차순*/
+select a.name,b.subject,b.score
+from contact_tbl a
+inner join 
+(select b.contact_id,a.subject,b.score
+from lecture_tbl a 
+inner join 
+learn_tbl b
+on a.id=b.lecture_id) b
+on a.id=b.contact_id
+order by subject, score asc;
+
+
 
 /*고객별 판매 총금액 내림차순*/
 select * from saled_tbl;
