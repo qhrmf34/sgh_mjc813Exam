@@ -259,6 +259,8 @@ inner join
 lecture_tbl c
 on a.lecture_id=c.id;
 
+
+
 /*전체 데이터 최고점수 내림차순*/
 select a.name,b.subject,b.score
 from contact_tbl a
@@ -321,7 +323,7 @@ inner join
 from saled_tbl
 group by contact_id) b
 on a.id=b.contact_id
-order by b.판매총금액;
+order by b.판매총금액 desc;
 
 /*각상품별 판매총금액 내림차순*/
 select product,price*qty-discount as 판매총금액
@@ -330,3 +332,15 @@ order by 판매총금액 desc;
 
 select * from learn_tbl;
 
+
+
+select * from saled_view;
+/*판매총금액 뷰참조*/
+select name,sum(price * qty - discount) as 판매금액
+from saled_view 
+group by name
+order by 판매금액 desc;
+
+select product, price * qty - discount as 판매금액
+from saled_view
+order by 판매금액 desc;
