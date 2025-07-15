@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class HelloController {
@@ -50,4 +52,14 @@ public class HelloController {
         model.addAttribute("gugudan",gugudanString.toString());
         return "gugu2"; //
     }
+    @GetMapping("/loop_gugudan/{number}")
+    public String loop_gugudan(@PathVariable Integer number, Model model) {
+        List<String> gugudan = new ArrayList<>();
+        for(int i=1;i<=9;i++){
+            gugudan.add(number+"*"+i+"="+number*i);
+        }
+        model.addAttribute("gugudan",gugudan);
+        return "loop_gugudan"; //
+    }
+
 }
