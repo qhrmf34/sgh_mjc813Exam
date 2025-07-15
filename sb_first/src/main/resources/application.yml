@@ -1,0 +1,13 @@
+#Spring Boot 설정값 지정
+spring:
+  application:
+    name: sb_first
+  thymeleaf:
+    enabled: true
+    suffix: .html
+    cache: false
+    encoding: UTF-8
+    mode: HTML
+
+server:
+  port: 18080

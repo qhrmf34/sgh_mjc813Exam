@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>First Springboot</title>
+</head>
+<body>
+  <h1>첫번째페이지</h1>
+  <div th:text="${screenKey}"> nice to study</div>
+  <div th:each="gugu:${gugudan}">
+      <div th:text="${gugu}"></div>
+  </div>
+</body>
+</html>
